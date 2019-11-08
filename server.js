@@ -5,8 +5,9 @@ const app = express();
 const database = new dataStore("database.db");
 database.loadDatabase();
 
-app.listen(3000,() => console.log("lelethu listerning"));
-app.use(express.static("../public"));
+const port = process.env.PORT || 3000
+app.listen(port,() => console.log("lelethu listerning"));
+app.use(express.static("./public"));
 app.use(express.json({limit: "1mb"}));
 
 app.get("/lelethungalo",(request, response) => {
