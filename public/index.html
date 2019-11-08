@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="stayle.css">
+    <title>Morgage Calculator</title>
+</head>
+<body>
+    <div class="mainContenar">
+        <nav class="topBar">
+            <h1 class="heading">Morgage mamama Calculator</h1>
+        </nav>
+
+        <div class="form-side">
+            <form class="myForm" name="myform" >
+                <h2>Calculate your money</h2>
+                <input type="text" name="prince" class="details" placeholder="Prince">
+                <input type="text" name="Deposit" class="details" placeholder="Deposit">
+                <input type="text" name="years" class="details" placeholder="Years">
+                <input type="text" name="interest" class="details" placeholder="Interest">
+                <input type="button" class="details" onclick="monthyPayments()" value="Calculate" >
+            </form>
+        </div>
+        <div class="display">
+                
+        </div>
+    </div>
+    <div class="graph">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        if("geolocation" in navigator){
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const data = {
+                    latitude: latitude,
+                    longitude: longitude
+                }
+                
+                const dada = await fetch(`/weather/${latitude},${longitude}`);
+                const json = await dada.json();
+                console.log(json);
+            });
+        }else{
+            console.log("geolocation not available");
+        }
+
+        /*const options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }*/
+    </script>
+    <script src="./index.js"></script>
+
+</body>
+</html>
+
